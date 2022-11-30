@@ -2,6 +2,7 @@ import {Component} from 'react'
 import './index.css'
 
 import ReactPopUp from './PopUp'
+import {ScoreStyle, ResultStyle} from './StyledComponents'
 
 class GamePage extends Component {
   state = {
@@ -64,10 +65,7 @@ class GamePage extends Component {
 
   onClickPlayAgain = () => {
     this.setState({
-      userChoiceImageUrl: '',
-      randomOpponentImageUrl: '',
       isGameOver: false,
-      resultMessage: '',
     })
   }
 
@@ -79,8 +77,8 @@ class GamePage extends Component {
       isGameOver,
       resultMessage,
     } = this.state
-    // console.log(userChoiceImageUrl)
-    // console.log(randomOpponentImageUrl)
+    console.log(userChoiceImageUrl)
+    console.log(randomOpponentImageUrl)
 
     const {choicesList} = this.props
 
@@ -95,32 +93,35 @@ class GamePage extends Component {
 
           <div className="score-container">
             <p style={{margin: 0}}>Score</p>
-            <p style={{fontSize: '30px', margin: 0, fontFamily: 'Roboto'}}>
-              {score}
-            </p>
+            <ScoreStyle>{score}</ScoreStyle>
           </div>
         </div>
 
         <div className="game-container">
           {isGameOver ? (
             <div style={{flexDirection: 'column'}}>
-              <div>
-                <img
-                  src={userChoiceImageUrl}
-                  alt="your choice"
-                  className="game-icon-img-prop"
-                />
-
-                <img
-                  src={randomOpponentImageUrl}
-                  alt="opponent choice"
-                  className="game-icon-img-prop"
-                />
+              <div
+                style={{display: 'flex', textAlign: 'center', color: 'white'}}
+              >
+                <div>
+                  <p>YOU</p>
+                  <img
+                    src={userChoiceImageUrl}
+                    alt="your choice"
+                    className="game-icon-img-prop"
+                  />
+                </div>
+                <div>
+                  <p>OPPONENT</p>
+                  <img
+                    src={randomOpponentImageUrl}
+                    alt="opponent choice"
+                    className="game-icon-img-prop"
+                  />
+                </div>
               </div>
 
-              <p style={{textAlign: 'center', color: 'white'}}>
-                {resultMessage}
-              </p>
+              <ResultStyle>{resultMessage}</ResultStyle>
 
               <div style={{textAlign: 'center'}}>
                 <button
